@@ -1,6 +1,7 @@
 package kz.singularity.jetpackcomposemost
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -24,17 +25,63 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.serialization.Serializable
+import kz.singularity.jetpackcomposemost.example_hilt.HiltClassWithParams
+import kz.singularity.jetpackcomposemost.example_hilt.HiltClassWithSeveralParams
+import kz.singularity.jetpackcomposemost.example_hilt.HiltClassWithoutParams
+import kz.singularity.jetpackcomposemost.example_hilt.HiltDatabase
 import kz.singularity.jetpackcomposemost.ui.theme.JetpackComposeMostTheme
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    //Koin examples
+//    val classWithoutParams: ClassWithoutParams by inject()
+//    val classWithParams: ClassWithParams by inject()
+//    val classWithSeveralParams: ClassWithSeveralParams = get()
+//    val database: Database by inject()
+
+    //Hilt Examples
+//    @Inject lateinit var variableName: VariableTYpe
+    @Inject
+    lateinit var hiltClassWithParams: HiltClassWithParams
+    @Inject
+    lateinit var hiltClassWithoutParams: HiltClassWithoutParams
+    @Inject
+    lateinit var hiltClassWithSeveralParams: HiltClassWithSeveralParams
+//    @Inject
+//    lateinit var apiService: ApiService
+    @Inject
+    lateinit var hiltDatabase: HiltDatabase
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+
+//        classWithoutParams.execute()
+//        classWithParams.execute()
+//        classWithSeveralParams.execute()
+
+
+        hiltClassWithoutParams.execute()
+        hiltClassWithParams.execute()
+        hiltClassWithSeveralParams.execute()
+
+
+//        MainScope().launch(Dispatchers.IO) {
+//            val users = apiService.getUsers()
+//            Log.d("TAG", users.toString())
+//        }
+
+        Log.e("TAG", hiltDatabase.getUsers().toString())
 
         setContent {
             JetpackComposeMostTheme {
@@ -89,7 +136,8 @@ fun HelloWorldScreen(navController: NavController) {
 
 @Composable
 fun HelloScreen(navController: NavController) {
-    val viewModel = viewModel(modelClass = HelloViewModel::class.java)
+//    val viewModel = viewModel(modelClass = HelloViewModel::class.java)
+    val viewModel = hiltViewModel<HelloViewModel>()
     val state by viewModel.state
 
     HelloContent(
