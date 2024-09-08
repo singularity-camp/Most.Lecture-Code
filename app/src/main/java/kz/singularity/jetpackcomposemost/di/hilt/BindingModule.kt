@@ -4,8 +4,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
-import kz.singularity.jetpackcomposemost.data.repository.UserRepositoryImpl
-import kz.singularity.jetpackcomposemost.data.use_case.GetUsersUseCaseImpl
+import kz.singularity.jetpackcompose.data.repository.UserRepositoryImpl
+import kz.singularity.jetpackcompose.data.use_case.GetUsersUseCaseImpl
 import kz.singularity.jetpackcomposemost.domain.repository.UserRepository
 import kz.singularity.jetpackcomposemost.domain.use_case.GetUsersUseCase
 

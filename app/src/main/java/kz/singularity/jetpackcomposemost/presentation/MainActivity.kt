@@ -10,12 +10,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.serialization.Serializable
 import kz.singularity.jetpackcomposemost.example.example_hilt.HiltClassWithParams
 import kz.singularity.jetpackcomposemost.example.example_hilt.HiltClassWithSeveralParams
 import kz.singularity.jetpackcomposemost.example.example_hilt.HiltClassWithoutParams
 import kz.singularity.jetpackcomposemost.example.example_hilt.HiltDatabase
 import kz.singularity.jetpackcomposemost.presentation.hello_world.HelloWorldScreen
+import kz.singularity.jetpackcomposemost.presentation.navigation.HelloWorldDestination
+import kz.singularity.jetpackcomposemost.presentation.navigation.UsersDestination
 import kz.singularity.jetpackcomposemost.presentation.ui.theme.JetpackComposeMostTheme
 import kz.singularity.jetpackcomposemost.presentation.users.UsersScreen
 import javax.inject.Inject
@@ -70,12 +71,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-@Serializable
-data object HelloWorldDestination
-
-@Serializable
-data object HelloDestination
-
-@Serializable
-data object UsersDestination
