@@ -7,7 +7,7 @@ import retrofit2.http.GET
 // Example: UserService, NewsService, PostService
 interface UserService {
 
-    @GET("users")
+    @GET("users/")
     suspend fun getUsers(): List<User>
 
 }
